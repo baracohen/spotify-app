@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import consts from '../../utils/consts';
 import setFilterType from '../../actions/setFilterType';
 import SetItems from '../../actions/setItems';
+import setNextQuery from '../../actions/setNextQuery';
 import commonUtils from '../../utils/commonUtils';
 import { LoadMore } from '../../api/spotifyService';
 
@@ -40,6 +41,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 function Home() {
+  const classes = useStyles();
   const spotifyItems = useSelector((state) => state.spotifyReducer.spotifyItems);
   const filterType = useSelector((state) => state.spotifyReducer.filterType);
   const nextQuery = useSelector((state) => state.spotifyReducer.nextQuery);
@@ -48,10 +50,10 @@ function Home() {
   const [isTimeSortActive, setIsTimeSortActive] = useState(false);
   const dispatch = useDispatch();
 
-  const classes = useStyles();
 
   const filterOnClick=() => {
     dispatch(SetItems([])); 
+    dispatch(setNextQuery(''));
     setIsFilterActive(!isFilterActive);
     dispatch(setFilterType(filterType == consts.FilterTypes.Album ? consts.FilterTypes.Track : consts.FilterTypes.Album))
   }
@@ -67,6 +69,7 @@ function Home() {
     setIsTimeSortActive(true);
     commonUtils.sortByName(spotifyItems,'time')
   }
+
   const nameSortOnClick = () => {
     setIsNameSortActive(true);
     setIsTimeSortActive(false);
@@ -106,7 +109,7 @@ function Home() {
               <Button className={classes.loadMoreBtn} onClick={loadMore}>Load more</Button>
             }
         </Grid>
-        :"No items"}
+        :nextQuery!= "" ? "Couldn't find tracks/albums, Try searching again using a different spelling or keyword":"" }
     </div>
 
     );

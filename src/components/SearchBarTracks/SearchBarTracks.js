@@ -26,10 +26,11 @@ function SearchBarTracks() {
     useEffect( () => {
       if(input.length > 2) {
         getTracks();
-
       } else {
         if(input.length === 0) {
           dispatch(SetItems([])); 
+          dispatch(setNextQuery(''));
+
         }
       }
     },[input, filterType]);

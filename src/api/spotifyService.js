@@ -13,7 +13,7 @@ export const axiosInstance = axios.create({
   export const SearchTracks = async (Input,filterType) => {
     const token = Cookies.get('spotifyAuthToken')
     
-    const res = await axios.get(`https://api.spotify.com/v1/search?q=${Input}&type=${filterType}&market=IS&limit=20`, {
+    const res = await axios.get(`https://api.spotify.com/v1/search?q=${Input}&type=${filterType}&market=IS&limit=25`, {
         headers: {
           'Accept': "application/json",
           'Content-Type': 'application/json',
