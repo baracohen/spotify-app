@@ -9,7 +9,6 @@ import SetToken  from '../../actions/setToken';
 
 
 function Dashboard() {
-
     const token = useSelector((state) => state.spotifyReducer.token);
     const dispatch = useDispatch();
 
@@ -26,15 +25,15 @@ function Dashboard() {
         <Home />
         ) : (
           <Grid container>
-            <Grid item md={5} sm={4} xs={2}></Grid>
-            <Grid item md={2} sm={4} xs={8}>
-              <SpotifyAuth
+            <Grid item md={4} sm={4} xs={3}></Grid>
+            <Grid item md={4} sm={4} xs={6}>
+              <SpotifyAuth 
                   redirectUri='http://localhost:3000/Home'
                   clientID='4d1d03000bac44cab88713bb8dd88493'
                   scopes={[Scopes.userReadPrivate, Scopes.userReadEmail]} 
                   />
             </Grid>
-            <Grid item md={5} sm={4} xs={2}></Grid>
+            <Grid item md={4} sm={4} xs={3}></Grid>
           </Grid>
         
         )}

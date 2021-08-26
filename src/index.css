@@ -12,3 +12,7 @@ body {
 code {
   font-family: "Gill Sans", sans-serif ;
 }
+._3xrlJ {
+  display: inline-flex !important;
+  border-radius: 50px !important;
+}
